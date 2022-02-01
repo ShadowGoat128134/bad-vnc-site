@@ -1,0 +1,4 @@
+#screen {
+    flex: 1; /* fill remaining space */
+    overflow: hidden;
+}
