@@ -16,3 +16,7 @@ function passwordneeded(e){
 }
 let url;
 url = "wss://" + host +":" + port;
+rfb = new RFB(document.getElementById('screen'), url, {credentials: {password: password}});
+rfb.addEventListener("connect",  connectedtohost);
+rfb.addEventListener("disconnect", connectiondropped);
+rfb.addEventListener("credentialsrequired", passwordneeded);

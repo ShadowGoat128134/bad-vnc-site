@@ -1,11 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript" src="./vnc.js"?></script>
   <link rel="stylesheet" type = "text/css" href="style.css">
 	<meta charset="utf-8" />
 	<title>When the VNC</title>
 </head>
+<script>
+import RFB from './core/rfb.js';
+let rfb;
+let host = prompt("IP: ");
+let port = prompt("Port: ");
+function connectedtohost(e){
+    alert("connected");
+}
+
+function connectiondropped(e){
+    alert("connection died");
+}
+
+function passwordneeded(e){
+    const password = prompt("Password: ")
+    rfb.sendCredentials({password: password});
+}
+let url;
+url = "wss://" + host +":" + port;
+rfb = new RFB(document.getElementById('screen'), url, {credentials: {password: password}});
+rfb.addEventListener("connect",  connectedtohost);
+rfb.addEventListener("disconnect", connectiondropped);
+rfb.addEventListener("credentialsrequired", passwordneeded);
+</script>
 <body>
     <div id="screen">
     </div>
