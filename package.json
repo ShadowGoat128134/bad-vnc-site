@@ -1,0 +1,21 @@
+{
+  "name": "bad-vnc-site",
+  "version": "0.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShadowGoat128134/bad-vnc-site.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ShadowGoat128134/bad-vnc-site/issues"
+  },
+  "homepage": "https://github.com/ShadowGoat128134/bad-vnc-site#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}

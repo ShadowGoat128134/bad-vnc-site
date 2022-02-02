@@ -1,10 +1,9 @@
 'use strict';
 //@ts-check
 
-const initializeServer = () => {
-	const connection = new RFB();
+const initializeServer = (ip='127.0.0.1', port=8080) => {
+  const connection = new RFB(`${ip}:${port}`);
 
-	
 }
 
 /**
@@ -12,38 +11,37 @@ const initializeServer = () => {
  * @param {String} ip
  * @param {Number} port
  */
-const connectToServer = (ip='127.0.0.1', port='8080') => {
-	alert(`Connecting to server at ${ip}:${port}`);
-	
-	initializeServer();
+const connectToServer = (ip='127.0.0.1', port=8080) => {
+  alert(`Connecting to server at ${ip}:${port}`);
+  
+  initializeServer();
 
-	/**import RFB from './core/rfb.js';
+  /**import RFB from './core/rfb.js';
         let rfb;
         let host;
         let port;
-	function getIP(){
+  function getIP(){
             host = prompt("IP: ");
-	}
-	function getPort(){
+  }
+  function getPort(){
             port = prompt("Port: ");
-	}
-        function connectedtohost(e){
-            alert("connected");
-        }
-        
-        function connectiondropped(e){
-            alert("connection died");
-        }
-        
-        function passwordneeded(e){
-            const password = prompt("Password: ")
-            rfb.sendCredentials({password: password});
-        }
-        let url;
-        url = "wss://" + host +":" + port;
-        rfb = new RFB(document.getElementById('screen'), url, {credentials: {password: password}});
-        rfb.addEventListener("connect",  connectedtohost);
-        rfb.addEventListener("disconnect", connectiondropped);
-        rfb.addEventListener("credentialsrequired", passwordneeded);*/
-
+  }
+  function connectedtohost(e){
+      alert("connected");
+  }
+  
+  function connectiondropped(e){
+      alert("connection died");
+  }
+  
+  function passwordneeded(e){
+      const password = prompt("Password: ")
+      rfb.sendCredentials({password: password});
+  }
+  let url;
+  url = "wss://" + host +":" + port;
+  rfb = new RFB(document.getElementById('screen'), url, {credentials: {password: password}});
+  rfb.addEventListener("connect",  connectedtohost);
+  rfb.addEventListener("disconnect", connectiondropped);
+  rfb.addEventListener("credentialsrequired", passwordneeded);*/
 }
