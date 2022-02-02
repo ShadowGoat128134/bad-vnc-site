@@ -1,9 +1,28 @@
 'use strict';
 //@ts-check
 
-const initializeServer = (ip='127.0.0.1', port=8080) => {
-  const connection = new RFB(`${ip}:${port}`);
+import RFB from '/static/public/lib/noVNC/core/rfb.js';
 
+const initializeServer = (ip='127.0.0.1', port=8080) => {
+  const rfb = new RFB(`${ip}:${port}`);
+  function connectedtohost(e){
+      alert("connected");
+  }
+  
+  function connectiondropped(e){
+      alert("connection died");
+  }
+  
+  function passwordneeded(e){
+      const password = prompt("Password: ")
+      rfb.sendCredentials({password: password});
+  }
+  let url;
+  url = "wss://" + host +":" + port;
+  rfb = new RFB(document.getElementById('screen'), url, {credentials: {password: password}});
+  rfb.addEventListener("connect",  connectedtohost);
+  rfb.addEventListener("disconnect", connectiondropped);
+  rfb.addEventListener("credentialsrequired", passwordneeded);
 }
 
 /**
