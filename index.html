@@ -9,8 +9,12 @@
         let rfb;
         let host;
         let port;
-        host = prompt("IP: ");
-        port = prompt("Port: ");
+	function getIP(){
+            host = prompt("IP: ");
+	}
+	function getPort(){
+            port = prompt("Port: ");
+	}
         function connectedtohost(e){
             alert("connected");
         }
@@ -31,6 +35,9 @@
         rfb.addEventListener("credentialsrequired", passwordneeded);
         </script>
 </head>
+
+<button class = "debug" style="margin-right:30px"  type="button" onclick= "getIP()">Debug</button>
+<button class = "port" style="margin-left:30px"  type="button" onclick= "getPort()">Debug</button>
 <body>
     <div id="screen">
     </div>
