@@ -1,45 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" type = "text/css" href="style.css">
+	<base href="../..">
 	<meta charset="utf-8" />
 	<title>When the VNC</title>
-    <script>
-        import RFB from './core/rfb.js';
-        let rfb;
-        let host;
-        let port;
-	function getIP(){
-            host = prompt("IP: ");
-	}
-	function getPort(){
-            port = prompt("Port: ");
-	}
-        function connectedtohost(e){
-            alert("connected");
-        }
-        
-        function connectiondropped(e){
-            alert("connection died");
-        }
-        
-        function passwordneeded(e){
-            const password = prompt("Password: ")
-            rfb.sendCredentials({password: password});
-        }
-        let url;
-        url = "wss://" + host +":" + port;
-        rfb = new RFB(document.getElementById('screen'), url, {credentials: {password: password}});
-        rfb.addEventListener("connect",  connectedtohost);
-        rfb.addEventListener("disconnect", connectiondropped);
-        rfb.addEventListener("credentialsrequired", passwordneeded);
-        </script>
+  <link rel="stylesheet" type = "text/css" href="style.css">
+	<script src="static/public/lib/noVNC/vnc.js"></script>
+	<script src="static/public/js/connect.js"></script>
 </head>
-
-<button class = "debug" style="margin-right:30px"  type="button" onclick= "getIP()">Debug</button>
-<button class = "port" style="margin-left:30px"  type="button" onclick= "getPort()">Debug</button>
 <body>
-    <div id="screen">
-    </div>
+	<input id="ipInput" name="ip" type="text" placeholder="IP Address">
+	<input id="portInput" name="port" type="numeric" placeholder="Port"><br>
+	<button id="submitDetails" type="button">Connect</button><br>
+	<script>
+		const submitButton = document.querySelector('#submitDetails');
+		submitButton.addEventListener('click', (e) => {
+			const ip = document.querySelector('#ipInput').value;
+			const port = document.querySelector('#portInput').value;
+			serverConnect(ip, port);
+		});
+
+		initializeServer();
+	</script>
 </body>
 </html>
