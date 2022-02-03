@@ -64,3 +64,5 @@ const connectToServer = (ip='127.0.0.1', port=8080) => {
   rfb.addEventListener("disconnect", connectiondropped);
   rfb.addEventListener("credentialsrequired", passwordneeded);*/
 }
+
+export default initializeServer;
